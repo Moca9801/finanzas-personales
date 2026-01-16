@@ -1,0 +1,1 @@
+El diseño de a web siempre tiene que er estetico, visual y minimalista, intuitivo y practico.

@@ -1,0 +1,65 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <div class="flex flex-col items-center">
+      <div
+        class="h-16 w-16 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-200 mb-4">
+        <span class="text-white text-3xl font-bold">ef</span>
+      </div>
+      <h2 class="text-center text-3xl font-extrabold text-gray-900 tracking-tight">
+        easy<span class="text-indigo-600">finansy</span>
+      </h2>
+      <p class="mt-2 text-center text-sm text-gray-500">
+        Toma el control total de tu futuro financiero
+      </p>
+    </div>
+    <form class="mt-8 space-y-6" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="rounded-xl shadow-sm -space-y-px overflow-hidden border border-gray-200">
+        <div *ngIf="isSignUp">
+          <label for="full-name" class="sr-only">Nombre Completo</label>
+          <input id="full-name" type="text" formControlName="fullName"
+            class="appearance-none rounded-none relative block w-full px-4 py-3 border-b border-gray-100 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            placeholder="Nombre completo">
+        </div>
+        <div>
+          <label for="email-address" class="sr-only">Email</label>
+          <input id="email-address" type="email" formControlName="email" required
+            class="appearance-none rounded-none relative block w-full px-4 py-3 border-b border-gray-100 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            placeholder="Correo electrónico">
+        </div>
+        <div>
+          <label for="password" class="sr-only">Contraseña</label>
+          <input id="password" type="password" formControlName="password" required
+            class="appearance-none rounded-none relative block w-full px-4 py-3 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            placeholder="Contraseña">
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end">
+        <div class="text-sm">
+          <a routerLink="/forgot-password" class="font-medium text-indigo-600 hover:text-indigo-500">
+            ¿Olvidaste tu contraseña?
+          </a>
+        </div>
+      </div>
+
+      <div *ngIf="errorMessage" class="text-red-500 text-sm text-center">
+        {{ errorMessage }}
+      </div>
+
+      <div>
+        <button type="submit" [disabled]="isLoading || loginForm.invalid"
+          class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-semibold rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 transition-all duration-200 shadow-md hover:shadow-lg">
+          <span *ngIf="!isLoading">{{ isSignUp ? 'Crear mi cuenta' : 'Entrar ahora' }}</span>
+          <span *ngIf="isLoading">Procesando...</span>
+        </button>
+      </div>
+
+      <div class="text-center mt-6">
+        <button type="button" (click)="toggleMode()"
+          class="text-sm font-medium text-indigo-600 hover:text-indigo-500 transition-colors">
+          {{ isSignUp ? '¿Ya tienes cuenta? Inicia sesión' : '¿Nuevo aquí? Crea tu cuenta gratis' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
